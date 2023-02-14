@@ -1,0 +1,6 @@
+.mono
+.import
+assets
+*.import
+*.blob
+*.png
