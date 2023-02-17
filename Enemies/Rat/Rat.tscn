@@ -1,44 +1,44 @@
 [gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://OutlinedRat/rat-attack-outline.png" type="Texture" id=1]
-[ext_resource path="res://OutlinedRat/rat-hurt-outline.png" type="Texture" id=2]
-[ext_resource path="res://OutlinedRat/rat-idle-outline.png" type="Texture" id=3]
-[ext_resource path="res://OutlinedRat/rat-death-outline.png" type="Texture" id=4]
-[ext_resource path="res://Enemies/Rat.gd" type="Script" id=5]
-[ext_resource path="res://OutlinedRat/rat-run-outline.png" type="Texture" id=6]
-[ext_resource path="res://Core/Life.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Core/Life.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-attack-outline.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-idle-outline.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-death-outline.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-hurt-outline.png" type="Texture" id=5]
+[ext_resource path="res://Enemies/Rat/Rat.gd" type="Script" id=6]
+[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-run-outline.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5, 14.5 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=32]
@@ -73,7 +73,7 @@ region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
-atlas = ExtResource( 2 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=14]
@@ -108,32 +108,32 @@ region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=13]
@@ -165,11 +165,11 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=39]
-extents = Vector2( 29, 16 )
+extents = Vector2( 2.85e+06, 1.55e+06 )
 
 [node name="Rat" type="KinematicBody2D"]
 position = Vector2( 200, 290 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 16.5 )
@@ -179,16 +179,17 @@ shape = SubResource( 1 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 13 )
 animation = "Idle"
-frame = 4
+frame = 2
 playing = true
 
 [node name="DamageArea" type="Area2D" parent="."]
+scale = Vector2( 1e-05, 1e-05 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2( -1, 15 )
+[node name="CollisionShape2d" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2( -50000, 1.54999e+06 )
 shape = SubResource( 39 )
 
-[node name="Life" parent="." instance=ExtResource( 7 )]
+[node name="Life" parent="." instance=ExtResource( 1 )]
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_Area2D_body_exited"]

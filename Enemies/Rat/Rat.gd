@@ -102,11 +102,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y = delta * gravity
 	velocity = move_and_slide(velocity, UP_Direction)
 
-	if is_attacking:
-		if player != null:
-			if player.is_attacking():
-				life.damage(2)
-			player.life.damage(1)
+	if is_attacking and player != null:
+		if player.is_attacking():
+			life.damage(2)
+		player.life.damage(1)
+		
 	
 func _on_Area2D_body_exited(body:Node):
 	if body.name == "Player":
