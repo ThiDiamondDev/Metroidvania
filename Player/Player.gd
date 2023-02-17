@@ -2,6 +2,12 @@ extends KinematicBody2D
 
 const UP_Direction := Vector2.UP
 
+onready var default_shape: CollisionShape2D = $DefaultShape
+onready var crouch_shape : CollisionShape2D = $CrouchShape
+
+onready var interaction_label: Label = $Camera2D/InteractionLabel
+onready var page: Node2D = $Camera2D/Page
+
 export var speed := 600.0
 export var jump_strength := 1700.0
 export var max_jumps := 2
@@ -16,13 +22,9 @@ export var is_attacking2 := false
 var _jump_made := 0
 var _velocity := Vector2.ZERO
 
-onready var pivot = $Pivot
-onready var current_animation : Sprite = $Pivot/Idle
-onready var animation_player = $AnimationPlayer
-onready var collision_shape = $CollisionShape2D
+onready var sprite : AnimatedSprite = $AnimatedSprite
 
-onready var animations = get_tree().get_nodes_in_group("player_animations")
-onready var start_scale: Vector2 = pivot.scale
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 var is_crouching := false
 
 var direction
@@ -34,28 +36,34 @@ var is_idling
 var is_running
 var is_sliding
 
+export var attacking_count := 0
+
 onready var life := $Life
 
-func is_attacking():
-	return is_attacking1 or is_attacking2
-
-func play_animation(name: String):
-	for animation_sprite in animations:
-		if animation_sprite.name == name:
-			current_animation = animation_sprite
-			animation_sprite.visible = true
-			animation_player.play(name)
-		else:
-			animation_sprite.visible = false
-
 func _ready():
-	is_attacking1 = false
-	is_attacking2 = false
+	for area in get_tree().get_nodes_in_group("crouch_areas"):
+		area.connect("body_entered", self, "on_crouch_area_entered")
+		area.connect("body_exited", self, "on_crouch_area_exited")
+	var __
+	__ = Events.connect("collected", self, "on_item_collected")
+	__ = Events.connect("can_interact", self, "set_can_interact")
 	life.life = 10000000
 	play_animation("Idle")
+	interaction_label.visible = false
 
+
+func is_attacking():
+	return attacking_count > 0
+
+func play_animation(name: String):
+	if name == "Attack1" or name == "Attack2":
+		animation_player.play(name)
+		return
+	sprite.play(name)
 
 func _physics_process(delta: float) -> void:
+	if page.visible:
+		return
 	var _horizontal_direction = (
 		Input.get_action_raw_strength("right")
 		- Input.get_action_raw_strength("left")
@@ -102,20 +110,19 @@ func _physics_process(delta: float) -> void:
 			slide_velocity = 1
 	
 	if Input.is_action_just_pressed("attack"):
-		if not is_attacking1 and not is_attacking2:
-			is_attacking1 = true
+		if attacking_count == 0:
+			attacking_count = 1
 			play_animation("Attack1")
-			
-		elif not is_attacking2:
+		elif attacking_count == 1:
 			play_animation("Attack2")
 			
-	
+
 	if _horizontal_direction > 0:
-		current_animation.flip_h = false
+		sprite.flip_h = false
 	elif _horizontal_direction < 0:
-		current_animation.flip_h = true
+		sprite.flip_h = true
 			
-	if is_attacking1 or is_attacking2:
+	if attacking_count > 0:
 		_velocity.x *= 0.5
 		_velocity.y *= 0.8
 		
@@ -135,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	
 	elif is_running:
 		if is_sliding:
-			play_animation("Run_slide")
+			play_animation("Slide")
 		
 		else :
 			play_animation("Run")
@@ -149,12 +156,35 @@ func _physics_process(delta: float) -> void:
 func is_sliding_begin():
 	if is_crouching or is_sliding:
 		return false
-	return Input.is_action_just_pressed("down") and	is_running
+	if Input.is_action_just_pressed("down") and	is_running:
+		set_crouching_shape()
+		return true
+	return false
 
-func _on_CrouchArea_body_entered(body: Node):
+func on_crouch_area_entered(body: Node):
 	if body.name == "Player":
+		set_crouching_shape()
 		is_crouching = true
 
-func _on_CrouchArea_body_exited(body:Node):
+
+func on_crouch_area_exited(body:Node):
 	if body.name == "Player":
+		set_default_shape()
 		is_crouching = false
+
+func set_crouching_shape():
+	default_shape.call_deferred("set", "disabled", true)
+	crouch_shape.call_deferred("set", "disabled", false)
+
+func set_default_shape():
+	default_shape.call_deferred("set", "disabled", false)
+	crouch_shape.call_deferred("set", "disabled", true)
+	
+func _on_Props_body_entered(_body:Node):
+	var __ = get_tree().change_scene("res://Chapters/House.tscn")
+
+func on_item_collected(item: String):
+	pass
+
+func set_can_interact(value: bool):
+	interaction_label.visible = value
