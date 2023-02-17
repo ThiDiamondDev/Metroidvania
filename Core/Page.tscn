@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/page.jpeg" type="Texture" id=1]
+[ext_resource path="res://Core/Page.gd" type="Script" id=2]
+[ext_resource path="res://Core/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "show_text"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+
+[node name="Page" type="Node2D"]
+position = Vector2( 542, 283 )
+scale = Vector2( 1.40925, 2.2933 )
+script = ExtResource( 2 )
+
+[node name="Page" type="Sprite" parent="."]
+position = Vector2( -41.1566, 35.7564 )
+scale = Vector2( 0.707071, 0.915956 )
+texture = ExtResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -114.0
+margin_top = -27.0
+margin_right = 38.0
+margin_bottom = 88.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "DDDSDSDSDSSSXSXSXSSSNBI SBIASUBDIUBASIUDB SBDIASUBDPSIUDBASIDUBD IUABD PUSIBDSPIUDBDUSDBSAUD BAPSIDUBASIUSBDAISUBDASIUDBASIDUBASIUBDCASBASUBXASIUBXASIUBASUBA IABSBDUASB  DBUSASUDBASPDUASBDAPDBUSDBASIUDBASDUB ASUIDBSDIAUSBDSDPAIUDBASPIDUBSDPSDUBSDDBDASPUDBI"
+text = "DDDSDSDSDSSSXSXSXSSSNBI SBIASUBDIUBASIUDB SBDIASUBDPSIUDBASIDUBD IUABD PUSIBDSPIUDBDUSDBSAUD BAPSIDUBASIUSBDAISUBDASIUDBASIDUBASIUBDCASBASUBXASIUBXASIUBASUBA IABSBDUASB  DBUSASUDBASPDUASBDAPDBUSDBASIUDBASDUB ASUIDBSDIAUSBDSDPAIUDBASPIDUBSDPSDUBSDDBDASPUDBI"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/show_text = SubResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = -75.9268
+margin_top = 97.2399
+margin_right = -7.92676
+margin_bottom = 117.24
+text = "Close"
