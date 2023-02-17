@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Core/Objectives.gd" type="Script" id=1]
+
+[node name="Objectives" type="Label"]
+margin_left = -242.0
+margin_top = -44.0
+margin_right = -182.0
+margin_bottom = -13.0
+script = ExtResource( 1 )
