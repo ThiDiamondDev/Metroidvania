@@ -14,6 +14,10 @@ config/name="Metroidvania"
 run/main_scene="res://Chapters/01_forest.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Events="*res://Core/Events.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -46,6 +50,11 @@ down={
 attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+collect={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
 
