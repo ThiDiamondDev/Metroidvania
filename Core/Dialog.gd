@@ -5,7 +5,7 @@ var dialog_list := ["oiii", "Hello i am a test", "Helllo worlddddd"]
 onready var animation_plyer: AnimationPlayer = $AnimationPlayer
 onready var label : RichTextLabel = $Label
 
-var dialog_name: String
+var dialog_id: String
 
 func _ready():
 	label.percent_visible = 0
@@ -18,7 +18,7 @@ func set_next_text():
 		label.bbcode_text =  get_current_text()
 		animation_plyer.play("dialog")
 	else:
-		Events.emit_signal("dialog_finished")
+		Events.emit_signal("dialog_finished", dialog_id)
 	
 func get_current_text():
 	return "\n[center]" + dialog_list[0] + "[/center]"
@@ -28,6 +28,7 @@ func on_animation_finished(_animation_name):
 	dialog_list.pop_front() 	
 	set_next_text()
 
-func play_dialog(dialog: Array):
+func play_dialog(dialog: Array, id: String):
 	dialog_list = dialog
+	dialog_id = id
 	set_next_text()
