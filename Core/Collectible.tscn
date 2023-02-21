@@ -12,10 +12,16 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Key" type="Sprite" parent="."]
 scale = Vector2( 0.0625, 0.0640496 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="body_entered" from="." to="." method="_on_CollectibleArea_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_CollectibleArea_body_exited"]

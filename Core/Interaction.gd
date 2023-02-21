@@ -13,7 +13,8 @@ var dialog2 := [
 ]
 
 var dialog3 := [
-	"Well done!! You finished the game!!!"
+	"Great!!!",
+	"Now you can use the healing potion and survive."
 ]
 func _init():
 	var __
@@ -22,13 +23,16 @@ func _init():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("collect") and can_interact:
-		if not Events.file_found.has("potion_list"):
-			Events.emit_signal("dialogued", dialog1 )
+		if not Quests.file_found["potion_list"]:
+			Events.emit_signal("dialogued", dialog1 ,"01")
 		else:
-			if Events.potions_found < 3:
-				Events.emit_signal("dialogued", dialog2 )
+			if Quests.potions_found < 3:
+				Events.emit_signal("dialogued", dialog2 ,"02" )
+				Quests.forest_2_can_travel = true
 			else:
-				Events.emit_signal("dialogued", dialog3 )
+				Events.emit_signal("dialogued", dialog3,"03" )
+
+
 func on_body_exited(body:Node):
     if body.name == "Player":
         can_interact = false

@@ -5,7 +5,7 @@ signal interacted(args)
 signal dialogued(args)
 signal can_interact(args)
 signal found_file(args)
-signal dialog_finished()
+signal dialog_finished(name)
 signal update_objective(args)
 signal file_closed(args)
 
@@ -22,5 +22,3 @@ func emit_signals():
         emit_signal("file_closed","")
 
 
-var file_found := {}
-var potions_found := 0
