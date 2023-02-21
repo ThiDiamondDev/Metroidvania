@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Taiga-Asset-Pack_v2_vnitti/PNG/Middleground.png" type="Texture" id=1]
+[ext_resource path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" type="Texture" id=2]
+[ext_resource path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers/far_mountains.png" type="Texture" id=3]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 1024, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 512, 25.5 )
+scale = Vector2( 2.13333, 2.89338 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 1024, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 506, 413 )
+scale = Vector2( 2.67708, 1.95629 )
+texture = ExtResource( 3 )
+region_filter_clip = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 1024, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 521, 486.542 )
+scale = Vector2( 2.68229, 2.57909 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
