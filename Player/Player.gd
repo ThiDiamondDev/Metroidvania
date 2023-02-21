@@ -5,11 +5,11 @@ const UP_Direction := Vector2.UP
 onready var default_shape: CollisionShape2D = $DefaultShape
 onready var crouch_shape : CollisionShape2D = $CrouchShape
 
-onready var interaction_label: Label = $Camera2D/InteractionLabel
-onready var page: Node2D = $Camera2D/Page
+onready var interaction_label: Label = $MainCamera/InteractionLabel
+onready var page: Node2D = $MainCamera/Page
 
 export var speed := 600.0
-export var jump_strength := 1700.0
+export var jump_strength := 1000.0
 export var max_jumps := 2
 export var double_jump_strength := 1200.0
 export var gravity := 4500.0
@@ -45,7 +45,6 @@ func _ready():
 		area.connect("body_entered", self, "on_crouch_area_entered")
 		area.connect("body_exited", self, "on_crouch_area_exited")
 	var __
-	__ = Events.connect("collected", self, "on_item_collected")
 	__ = Events.connect("can_interact", self, "set_can_interact")
 	life.life = 10000000
 	play_animation("Idle")
@@ -110,12 +109,7 @@ func _physics_process(delta: float) -> void:
 			slide_velocity = 1
 	
 	if Input.is_action_just_pressed("attack"):
-		if attacking_count == 0:
-			attacking_count = 1
-			play_animation("Attack1")
-		elif attacking_count == 1:
-			play_animation("Attack2")
-			
+		pass	
 
 	if _horizontal_direction > 0:
 		sprite.flip_h = false
@@ -182,9 +176,6 @@ func set_default_shape():
 	
 func _on_Props_body_entered(_body:Node):
 	var __ = get_tree().change_scene("res://Chapters/House.tscn")
-
-func on_item_collected(item: String):
-	pass
 
 func set_can_interact(value: bool):
 	interaction_label.visible = value

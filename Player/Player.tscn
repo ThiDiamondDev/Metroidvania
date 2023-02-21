@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Player/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack2.png" type="Texture" id=1]
 [ext_resource path="res://Player/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack.png" type="Texture" id=2]
@@ -11,9 +11,7 @@
 [ext_resource path="res://Player/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Crouch.png" type="Texture" id=9]
 [ext_resource path="res://Player/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_CrouchWalk.png" type="Texture" id=10]
 [ext_resource path="res://Core/Life.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Core/Dialog.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Core/Page.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Core/Objectives.tscn" type="PackedScene" id=14]
+[ext_resource path="res://MainCamera.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=53]
 extents = Vector2( 9.51503, 11.7145 )
@@ -402,33 +400,7 @@ is_attacking2 = true
 
 [node name="Life" parent="." instance=ExtResource( 11 )]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 260, 150.5 )
-current = true
-limit_top = -500
-
-[node name="Dialog" parent="Camera2D" instance=ExtResource( 12 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -252.5
-margin_top = 119.5
-margin_right = 255.5
-margin_bottom = 176.5
-
-[node name="InteractionLabel" type="Label" parent="Camera2D"]
-margin_left = -241.5
-margin_top = -71.5
-margin_right = -172.5
-margin_bottom = -57.5
-text = "Q: Interact"
-
-[node name="Page" parent="Camera2D" instance=ExtResource( 13 )]
-visible = false
-position = Vector2( 54, -31 )
-scale = Vector2( 1, 1 )
-z_index = 1
-
-[node name="Objectives" parent="Camera2D" instance=ExtResource( 14 )]
+[node name="MainCamera" parent="." instance=ExtResource( 12 )]
 
 [node name="CrouchShape" type="CollisionShape2D" parent="."]
 position = Vector2( 262, 218.5 )
