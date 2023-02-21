@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Core/ProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://Core/LifeBar.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.768627, 0.211765, 0.211765, 1 )
