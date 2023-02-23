@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Base/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ParallaxBackground1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Core/WorldPortal.tscn" type="PackedScene" id=4]
@@ -46,9 +46,6 @@ __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -571.214, 522.935 )
-
 [node name="Forest2Portal" parent="." instance=ExtResource( 4 )]
 position = Vector2( 852.798, 925.705 )
 scene_path = "res://Chapters/forest2.tscn"
@@ -66,11 +63,11 @@ shape = SubResource( 11 )
 
 [node name="Bookshelf3" parent="Laboratory" instance=ExtResource( 36 )]
 position = Vector2( -1075.05, 1192.74 )
-z_index = 1
+collision_mask = 2
 
 [node name="Bookshelf2" parent="Laboratory" instance=ExtResource( 37 )]
 position = Vector2( -826.651, 1201.64 )
-z_index = 1
+collision_mask = 2
 
 [node name="CurtainBlue2" type="Sprite" parent="Laboratory"]
 position = Vector2( 422.376, 859.371 )
@@ -145,13 +142,14 @@ position = Vector2( 172.973, 1055.88 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 34 )
 
+[node name="InteractionArea" parent="Laboratory" instance=ExtResource( 32 )]
+position = Vector2( -376.117, 980.226 )
+scale = Vector2( 1.6128, 2.7903 )
+
 [node name="Bookshelf1" type="Sprite" parent="Laboratory"]
 position = Vector2( 85.0686, 1024.51 )
 scale = Vector2( 1.26996, 1.67042 )
 texture = ExtResource( 28 )
-
-[node name="InteractionArea" parent="Laboratory/Bookshelf1" instance=ExtResource( 32 )]
-position = Vector2( -363.15, -26.5107 )
 
 [node name="CandelabrumTall1" type="Sprite" parent="Laboratory"]
 position = Vector2( -836.707, 941.282 )
@@ -179,6 +177,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 45 )
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
+z_index = -4
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
@@ -328,5 +327,8 @@ position = Vector2( -3588.19, 636.422 )
 
 [node name="Key" parent="." instance=ExtResource( 26 )]
 position = Vector2( 1214.83, 364.941 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -884.979, 427.249 )
 
 [editable path="CrouchArea"]

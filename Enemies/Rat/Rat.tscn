@@ -1,195 +1,41 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Core/Life.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-attack-outline.png" type="Texture" id=2]
-[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-idle-outline.png" type="Texture" id=3]
-[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-death-outline.png" type="Texture" id=4]
-[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-hurt-outline.png" type="Texture" id=5]
-[ext_resource path="res://Enemies/Rat/Rat.gd" type="Script" id=6]
-[ext_resource path="res://Enemies/Rat/OutlinedRat/rat-run-outline.png" type="Texture" id=7]
+[ext_resource path="res://Base/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Rat/Rat.tres" type="SpriteFrames" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.5, 14.5 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 5.0
 
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
+[sub_resource type="CapsuleShape2D" id=2]
+height = 8.0
 
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 160, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=32]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=33]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=34]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=35]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=36]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=37]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 160, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=38]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 160, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 160, 0, 32, 32 )
-
-[sub_resource type="SpriteFrames" id=13]
-animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "Attack",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
-"loop": true,
-"name": "Death",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 38 ) ],
-"loop": true,
-"name": "Hurt",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
-"loop": true,
-"name": "Run",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=39]
-extents = Vector2( 2.85e+06, 1.55e+06 )
-
-[node name="Rat" type="KinematicBody2D"]
-position = Vector2( 200, 290 )
-script = ExtResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 16.5 )
-shape = SubResource( 1 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Rat" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
-frames = SubResource( 13 )
+speed = 400.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( 0, 7.5 )
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2( 0, 5.5 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="2"]
+frames = ExtResource( 2 )
 animation = "Idle"
-frame = 2
-playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="DamageArea" type="Area2D" parent="."]
-scale = Vector2( 1e-05, 1e-05 )
-
-[node name="CollisionShape2d" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2( -50000, 1.54999e+06 )
-shape = SubResource( 39 )
-
-[node name="Life" parent="." instance=ExtResource( 1 )]
-
-[connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="." method="_on_Area2D_body_exited"]
+[node name="ProgressBar" parent="." index="4"]
+margin_left = -15.5
+margin_top = -12.5
+margin_right = 14.5
+margin_bottom = -8.5

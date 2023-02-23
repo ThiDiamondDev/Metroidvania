@@ -4,9 +4,11 @@ onready var label: Label = $CounterLabel
 
 func _ready():
 	visible = false
-	var __ = Inventory.connect("item_added", self, "on_item_added")
+	var __ 
+	__ = Inventory.connect("item_added", self, "update_counter")
+	__ = Inventory.connect("item_used", self, "update_counter")
 
-func on_item_added(item_name: String):
+func update_counter(item_name: String):
 	if item_name == "healing_potion":
 		if not visible:
 			visible = true	

@@ -17,7 +17,7 @@ func _process(_delta):
 			if get_tree().change_scene(scene_path) != OK:
 				print("Error changing scene: ", name)
 		else:
-			Events.emit_signal("dialogued", ["I can't go right now!"], "03" )
+			Events.emit_signal("dialogued", ["I can't go right now!"], "09" )
 
 func set_can_interact(body: Node, value: bool):
 	if body.name == "Player":

@@ -8,6 +8,7 @@ signal found_file(args)
 signal dialog_finished(name)
 signal update_objective(args)
 signal file_closed(args)
+signal player_damage(points)
 
 # Remove signal never emitted warning
 func emit_signals():
@@ -20,5 +21,5 @@ func emit_signals():
         emit_signal("dialog_finished","")
         emit_signal("update_objective","")
         emit_signal("file_closed","")
-
+        emit_signal("player_damage","")
 
